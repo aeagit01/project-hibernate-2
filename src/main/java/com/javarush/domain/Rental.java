@@ -1,0 +1,93 @@
+package com.javarush.domain;
+
+import jakarta.persistence.*;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
+
+
+@Entity
+@Table(name = "rental", schema = "movie")
+public class Rental {
+    @Id
+    @Column(name = "rental_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name = "rental_date")
+    private LocalDateTime rentalDate;
+
+    @ManyToOne
+    @JoinColumn(name = "inventory_id")
+    private Inventory inventoryId;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customerId;
+
+    @Column(name = "return_date")
+    private LocalDateTime returnDate;
+    @ManyToOne
+    @JoinColumn(name = "staff_id")
+    private Staff staff;
+
+    @Column(name = "last_update")
+    @UpdateTimestamp
+    private LocalDateTime lastUpdate;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getRentalDate() {
+        return rentalDate;
+    }
+
+    public void setRentalDate(LocalDateTime rentalDate) {
+        this.rentalDate = rentalDate;
+    }
+
+    public Inventory getInventoryId() {
+        return inventoryId;
+    }
+
+    public void setInventoryId(Inventory inventoryId) {
+        this.inventoryId = inventoryId;
+    }
+
+    public Customer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Customer customerId) {
+        this.customerId = customerId;
+    }
+
+    public LocalDateTime getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(LocalDateTime returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
+    }
+
+    public LocalDateTime getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(LocalDateTime lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+}
